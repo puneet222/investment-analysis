@@ -1,0 +1,14 @@
+{
+  "name": "investment-analysis",
+  "version": "1.0.0",
+  "description": "Generates beautiful color coded excel sheets for various group of financial intruments so that a user can take informed decision on where to invest his/her money",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Puneet Aggarwal",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.0"
+  }
+}
