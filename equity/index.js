@@ -23,8 +23,8 @@ const analyzeEquityFunds = (data) => {
             case "ELSS":
                 // Analyse ELSSs
                 let elssWorksheet = workbook.addWorksheet('ELSS');
-                let promise = elss(data[type], elssWorksheet);
-                promiseArray.push(promise);
+                let elssPromise = elss(data[type], elssWorksheet);
+                promiseArray.push(elssPromise);
                 break;
             case "Value Fund":
                 // Analyse Value Funds
@@ -41,7 +41,8 @@ const analyzeEquityFunds = (data) => {
             case "Focused Fund":
                 // Analyse Focused Funds
                 let focusedFundWorksheet = workbook.addWorksheet('Focused Funds');
-                focusedFund(data[type], focusedFundWorksheet);
+                let focusedFundPromise = focusedFund(data[type], focusedFundWorksheet);
+                promiseArray.push(focusedFundPromise);
                 break;
             case "Contra Fund":
                 // Analyse Contra Funds
