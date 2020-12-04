@@ -5,8 +5,9 @@ const relevantFundHoldings = require("./relevantFundHoldings");
 module.exports = (fundIds) => {
     let consolidatedData = [];
     let sectors = new Set();
+    let interval = 100;
     return new Promise(async resolve => {
-        await asyncForEach(fundIds, async (fundId) => {
+        await asyncForEach(fundIds, async (fundId, index) => {
             let fundInfoUrl = `https://api.kuvera.in/mf/api/v4/fund_schemes/${fundId}.json?v=1.171.8`;
             let fundHoldingUrl = `https://api.kuvera.in/mf/api/v4/fund_portfolio_holdings/${fundId}.json?v=1.171.8`;
             let fundInfo = await axios.get(fundInfoUrl);

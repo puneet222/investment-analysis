@@ -4,7 +4,7 @@ module.exports = (data) => {
     let dividendReinvestedFundIds = [];
     Object.keys(data).forEach(fund => {
         data[fund].forEach(type => {
-            if(type.c.includes("GR")) {
+            if(type.c.includes("GR") || type.c.includes("GP")) {
                 // Growth Plans
                 growthFundIds.push(type.c);
             } else if(type.c.includes("DP")) {
@@ -14,7 +14,7 @@ module.exports = (data) => {
                 // Dividend Reinvested Plans
                 dividendReinvestedFundIds.push(type.c);
             } else {
-                console.log(type);
+                console.log("type not found: ", type);
             }
         });
     });

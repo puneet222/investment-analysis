@@ -10,6 +10,8 @@ const analyzeFocusedFunds = (data, worksheet) => {
             worksheet = utils.updateWorksheet(worksheet, headers, data.fundData);
             console.log("Resolved Focused Funds");
             resolve(worksheet);
+        }).catch(err => {
+            console.log(err)
         });
     });
 }

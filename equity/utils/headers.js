@@ -10,7 +10,7 @@ const headers = {
         color: 'bcb781'
     },
     'crisil_rating': {
-        field: 'Ratings',
+        field: 'Risk',
         position: 3,
         color: 'bc95a8'
     },
