@@ -8,6 +8,7 @@ const analyzeFocusedFunds = (data, worksheet) => {
             let sectors = Array.from(data.fundSectors);
             let headers = utils.getHeaders(sectors);
             worksheet = utils.updateWorksheet(worksheet, headers, data.fundData);
+            console.log("Resolved Focused Funds");
             resolve(worksheet);
         });
     });

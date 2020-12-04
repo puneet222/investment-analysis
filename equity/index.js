@@ -1,5 +1,6 @@
 const elss = require("./elss");
 const focusedFund = require("./focused-fund");
+const multiCapFund = require("./multi-cap-fund");
 const excel = require('excel4node');
 
 const workbook = new excel.Workbook();
@@ -10,6 +11,9 @@ const analyzeEquityFunds = (data) => {
         switch (type) {
             case "Multi Cap Fund":
                 // Analyse Multi Cap Funds
+                let multiCapWorksheet = workbook.addWorksheet('Multi Cap Funds');
+                let multiCapPromise = multiCapFund(data[type], multiCapWorksheet);
+                promiseArray.push(multiCapPromise);
                 break;
             case "Large Cap Fund":
                 // Analyse Large Cap Funds
