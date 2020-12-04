@@ -36,7 +36,7 @@ const analyzeEquityFunds = (data) => {
                 let midCapPromise = midCapFund(data[type], midCapWorksheet);
                 promiseArray.push(midCapPromise);
                 break;
-            case "Sectoral/Thematic-":
+            case "Sectoral/Thematic":
                 // Analyse Sectoral/Thematics
                 let sectoralThematicWorksheet = workbook.addWorksheet('Sectoral Thematic Funds');
                 let sectoralThematicPromise = sectoralThematicFund(data[type], sectoralThematicWorksheet);
