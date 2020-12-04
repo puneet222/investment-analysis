@@ -9,6 +9,7 @@
   "author": "Puneet Aggarwal",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.0"
+    "axios": "^0.21.0",
+    "excel4node": "^1.7.2"
   }
 }
