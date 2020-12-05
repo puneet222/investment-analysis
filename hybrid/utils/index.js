@@ -4,6 +4,7 @@ const roundOff = require("../../common/roundOff");
 const segregateFundIds = require("../../common/segregateFundIds");
 const headers = require("./headers");
 const updateWorksheet = require("./updateWorksheet");
+const getRatings = require("../../common/ratings");
 const chalk = require('chalk');
 
 const FUND_NAMES = {
@@ -29,5 +30,6 @@ module.exports = {
     segregateFundIds,
     updateWorksheet,
     chalk,
+    getRatings,
     FUND_NAMES
 }

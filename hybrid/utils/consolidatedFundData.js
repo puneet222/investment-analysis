@@ -13,12 +13,13 @@ function sleep(ms) {
 module.exports = (fundIds, fundName) => {
     let consolidatedData = [];
     let sectors = new Set();
+    let ratings = new Set();
     console.log(chalk.red.bold(`Analyzing ${fundName}...`));
     const bar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
     let totalResolved = 0;
     bar.start(fundIds.length, totalResolved);
     return new Promise(async resolve => {
-        await asyncForEach(fundIds, async (fundId, index) => {
+        await asyncForEach(fundIds, async fundId => {
             let fundInfoUrl = `https://api.kuvera.in/mf/api/v4/fund_schemes/${fundId}.json?v=1.171.8`;
             let fundHoldingUrl = `https://api.kuvera.in/mf/api/v4/fund_portfolio_holdings/${fundId}.json?v=1.171.8`;
             let fundInfo = await axios.get(fundInfoUrl);
@@ -27,15 +28,17 @@ module.exports = (fundIds, fundName) => {
             await sleep(SLEEP_TIME);
             let fundData = relevantFundData(fundInfo.data);
             let fundHoldings = relevantFundHoldings(holdingsInfo.data, fundId);
-            fundData = {...fundData, sectorHoldings: fundHoldings.holdings};
+            fundData = {...fundData, sectorHoldings: fundHoldings.sectorHoldings, bondHoldings: fundHoldings.bondHoldings};
             sectors = new Set([...sectors, ...fundHoldings.sectors]);
+            ratings = new Set([...ratings, ...fundHoldings.ratings]);
             consolidatedData.push(fundData);
             totalResolved++;
             bar.update(totalResolved);
         });
         let completeFundData = {
             fundData: consolidatedData,
-            fundSectors: sectors
+            fundSectors: sectors,
+            fundRatings: ratings 
         }
         bar.stop();
         resolve(completeFundData);

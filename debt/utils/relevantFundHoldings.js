@@ -1,4 +1,4 @@
-const getRatings = require("./ratings");
+const getRatings = require("../../common/ratings");
 
 module.exports = (data, fundId) => {
     let ratings = new Set();

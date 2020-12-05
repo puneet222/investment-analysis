@@ -1,6 +1,6 @@
 const axios = require("axios");
 const cliProgress = require('cli-progress');
-const relevantFundData = require("./relevantFundData");
+const relevantFundData = require("../../common/relevantFundData");
 const relevantFundHoldings = require("./relevantFundHoldings");
 
 const SLEEP_TIME = 1000;

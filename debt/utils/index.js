@@ -1,10 +1,10 @@
 const consolidatedFundData = require("./consolidatedFundData");
-const cellStyles = require("./cellStyles");
-const roundOff = require("./roundOff");
-const segregateFundIds = require("./segregateFundIds");
+const cellStyles = require("../../common/cellStyles");
+const roundOff = require("../../common/roundOff");
+const segregateFundIds = require("../../common/segregateFundIds");
 const headers = require("./headers");
 const updateWorksheet = require("./updateWorksheet");
-const getRatings = require("./ratings");
+const getRatings = require("../../common/ratings");
 
 
 module.exports = {

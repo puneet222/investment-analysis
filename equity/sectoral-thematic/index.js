@@ -4,7 +4,6 @@ const utils = require("../utils");
 
 const analyzeSectoralThematicFunds = (data, worksheet) => {
     let fundIds = utils.segregateFundIds(data);
-    console.log(utils.chalk.red.bold('Analyzing Sectoral Thematic Funds...'));
     return new Promise(resolve => {
         utils.getConsolidatedDataByFundIds(fundIds.growthFundIds, FUND_NAMES.SECTORAL_THEMATIC_FUND).then(data => {
             let sectors = Array.from(data.fundSectors);
