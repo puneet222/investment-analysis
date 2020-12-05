@@ -28,7 +28,13 @@ module.exports = (fundIds, fundName) => {
             await sleep(SLEEP_TIME);
             let fundData = relevantFundData(fundInfo.data);
             let fundHoldings = relevantFundHoldings(holdingsInfo.data, fundId);
-            fundData = {...fundData, sectorHoldings: fundHoldings.sectorHoldings, bondHoldings: fundHoldings.bondHoldings};
+            fundData = {
+                ...fundData, 
+                sectorHoldings: fundHoldings.sectorHoldings, 
+                bondHoldings: fundHoldings.bondHoldings,
+                total_equity_holdings: fundHoldings.totalEquityHoldings,
+                total_bond_holdings: fundHoldings.totalBondHoldings
+            };
             sectors = new Set([...sectors, ...fundHoldings.sectors]);
             ratings = new Set([...ratings, ...fundHoldings.ratings]);
             consolidatedData.push(fundData);

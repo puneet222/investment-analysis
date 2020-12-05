@@ -3,7 +3,7 @@ const cliProgress = require('cli-progress');
 const relevantFundData = require("../../common/relevantFundData");
 const relevantFundHoldings = require("./relevantFundHoldings");
 
-const SLEEP_TIME = 1000;
+const SLEEP_TIME = 100;
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));

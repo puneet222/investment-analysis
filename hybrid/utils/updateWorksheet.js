@@ -27,7 +27,16 @@ module.exports = (worksheet, headers, data) => {
                         .number(roundOff(v, 2))
                         .style(cellStyles.getSectorStyle(v));
                     }
-                })
+                });
+            } else if(key === 'bondHoldings') {
+                let holdingsMap = fundObject[key];
+                holdingsMap.forEach((v, k) => {
+                    if(headers[k] && v !== null) {
+                        worksheet.cell(dataRow, headers[k]['position'])
+                        .number(roundOff(v, 2))
+                        .style(cellStyles.getSectorStyle(v));
+                    }
+                });
             } else if(key === 'returns') {
                 let returns = fundObject[key];
                 if(returns) {
@@ -81,6 +90,26 @@ module.exports = (worksheet, headers, data) => {
                         worksheet.cell(dataRow, headers[key]['position'])
                         .number(roundOff(fundObject[key], 2))
                         .style(cellStyles.getCellBackgroundStyle('f9fbe7'));
+                    } else {
+                        worksheet.cell(dataRow, headers[key]['position'])
+                        .string(NA)
+                        .style(cellStyles.getCellBackgroundStyle(DISABLE_LIGHT_COLOR));
+                    }
+                } else if(key === 'total_equity_holdings') {
+                    if(fundObject[key] !== null) {
+                        worksheet.cell(dataRow, headers[key]['position'])
+                        .number(roundOff(fundObject[key], 2))
+                        .style(cellStyles.getSectorStyle(fundObject[key]));
+                    } else {
+                        worksheet.cell(dataRow, headers[key]['position'])
+                        .string(NA)
+                        .style(cellStyles.getCellBackgroundStyle(DISABLE_LIGHT_COLOR));
+                    }
+                } else if(key === 'total_bond_holdings') {
+                    if(fundObject[key] !== null) {
+                        worksheet.cell(dataRow, headers[key]['position'])
+                        .number(roundOff(fundObject[key], 2))
+                        .style(cellStyles.getSectorStyle(fundObject[key]));
                     } else {
                         worksheet.cell(dataRow, headers[key]['position'])
                         .string(NA)

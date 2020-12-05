@@ -5,6 +5,8 @@ module.exports = (data, fundId) => {
     let ratings = new Set();
     let sectorMap = new Map();
     let ratingsMap = new Map();
+    let totalEquityHoldings = 0;
+    let totalBondHoldings = 0;
     data[fundId].forEach(holding => {
         if(holding.ticker) {
             // Sector
@@ -14,6 +16,7 @@ module.exports = (data, fundId) => {
                 sectorMap.set(holding.sector_name, holding.percentage_to_aum);
             }
             sectors.add(holding.sector_name);
+            totalEquityHoldings += holding.percentage_to_aum;
         } else {
             // Bond
             let derivedRatings = getRatings(holding.credit_rating)
@@ -23,12 +26,19 @@ module.exports = (data, fundId) => {
                 ratingsMap.set(derivedRatings, holding.percentage_to_aum);
             }
             ratings.add(derivedRatings);
+            if(holding.value_in_mn < 0) {
+                totalBondHoldings -= holding.percentage_to_aum;
+            } else {
+                totalBondHoldings += holding.percentage_to_aum;
+            }
         }
     });
     return {
         sectorHoldings: sectorMap,
         sectors: sectors,
         bondHoldings: ratingsMap,
-        ratings: ratings
+        ratings: ratings,
+        totalEquityHoldings,
+        totalBondHoldings
     };
 }
