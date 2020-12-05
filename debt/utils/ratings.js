@@ -29,6 +29,7 @@ module.exports = (rating) => {
             rating.toLowerCase().includes("icra a") ||
             rating.toLowerCase().includes("crisil - a") ||
             rating.toLowerCase().includes("crisil-a") ||
+            rating.toLowerCase().includes("crisil a") ||
             rating.toLowerCase().includes("care - a") ||
             rating.toLowerCase().includes("care a")) {
         derivedRating = "A";
