@@ -1,32 +1,17 @@
+const liquidFund = require('./liquid-fund');
+
 const excel = require('excel4node');
 
 const workbook = new excel.Workbook();
-
-const types = [
-    'Liquid Fund',
-    'Dynamic Bond',
-    'Corporate Bond Fund',
-    'Other Bond',
-    'Money Market Fund',
-    'Gilt Fund',
-    'Banking and PSU Fund',
-    'Floater Fund',
-    'Long Duration Fund',
-    'Short Duration Fund',
-    'Medium Duration Fund',
-    'Low Duration Fund',
-    'Ultra Short Duration Fund',
-    'Credit Risk Fund',
-    'Medium to Long Duration Fund',
-    'Gilt Fund with 10 year constant duration',
-    'Overnight Fund'
-  ]
 
 const analyzeDebtFunds = (data) => {
     let promiseArray = [];
     Object.keys(data).forEach(type => {
         switch (type) {
             case "Liquid Fund":
+                let liquidWorksheet = workbook.addWorksheet('Liquid Fund');
+                let liquidPromise = liquidFund(data[type], liquidWorksheet);
+                promiseArray.push(liquidPromise);
                 break;
             case "Dynamic Bond":
                 break;
@@ -65,7 +50,7 @@ const analyzeDebtFunds = (data) => {
                 break;
         }
     });
-    Promise.all(promiseArray).then(resp => workbook.write('Excel.xlsx'));
+    Promise.all(promiseArray).then(resp => workbook.write('Debt.xlsx'));
 }
 
 module.exports = analyzeDebtFunds;
