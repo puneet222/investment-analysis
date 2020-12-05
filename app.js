@@ -1,5 +1,5 @@
-const axios = require("axios");
 const equity = require("./equity");
+const debt = require("./debt");
 const data = require("./data.json");
 
 let fund_schemes_api = "https://api.kuvera.in/mf/api/v4/fund_schemes/list.json?v=1.171.8";
@@ -12,7 +12,7 @@ const getAllfundSchemes = async() => {
         // let { data } = await axios.get(fund_schemes_api);
         Object.keys(data).forEach(type => {
             switch (type) {
-                case "Equity":
+                case "Equity-":
                     // Analyze Equity funds
                     equity(data[type]);
                     break;
@@ -21,6 +21,7 @@ const getAllfundSchemes = async() => {
                     break;
                 case "Debt":
                     // Analyze Debt funds
+                    debt(data[type]);
                     break;
                 case "Hybrid":
                     // Analyze Hybrid funds
