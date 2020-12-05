@@ -6,6 +6,10 @@ const dynamicFund = require("./dynamic-bond");
 const floaterFund = require("./floater-fund");
 const giltFund = require("./gilt-fund");
 const gilt10YFund = require("./gilt-fund-10-years");
+const lowDurationFund = require("./low-duration");
+const mediumDurationFund = require("./medium-duration");
+const shortDurationFund = require("./short-duration");
+const longDurationFund = require("./long-duration");
 
 const excel = require('excel4node');
 
@@ -34,7 +38,7 @@ const analyzeDebtFunds = (data) => {
                 break;
             case "Money Market Fund":
                 break;
-            case "Gilt Fund":
+            case "Gilt Fund-":
                 let giltWorksheet = workbook.addWorksheet('Gilt Fund');
                 let giltPromise = giltFund(data[type], giltWorksheet);
                 promiseArray.push(giltPromise);
@@ -44,18 +48,30 @@ const analyzeDebtFunds = (data) => {
                 let bankPSUPromise = bankPSUFund(data[type], bankPSUWorksheet);
                 promiseArray.push(bankPSUPromise);
                 break;
-            case "Floater Fund":
+            case "Floater Fund-":
                 let floaterWorksheet = workbook.addWorksheet('Floater Fund');
                 let floaterPromise = floaterFund(data[type], floaterWorksheet);
                 promiseArray.push(floaterPromise);
                 break;
             case "Long Duration Fund":
+                let longDurationWorksheet = workbook.addWorksheet('Long Duration Fund');
+                let longDurationPromise = longDurationFund(data[type], longDurationWorksheet);
+                promiseArray.push(longDurationPromise);
                 break;
             case "Short Duration Fund":
+                let shortDurationWorksheet = workbook.addWorksheet('Short Duration Fund');
+                let shortDurationPromise = shortDurationFund(data[type], shortDurationWorksheet);
+                promiseArray.push(shortDurationPromise);
                 break;
             case "Medium Duration Fund":
+                let mediumDurationWorksheet = workbook.addWorksheet('Medium Duration Fund');
+                let mediumDurationPromise = mediumDurationFund(data[type], mediumDurationWorksheet);
+                promiseArray.push(mediumDurationPromise);
                 break;
             case "Low Duration Fund":
+                let lowDurationWorksheet = workbook.addWorksheet('Low Duration Fund');
+                let lowDurationPromise = lowDurationFund(data[type], lowDurationWorksheet);
+                promiseArray.push(lowDurationPromise);
                 break;
             case "Ultra Short Duration Fund":
                 break;
@@ -66,7 +82,7 @@ const analyzeDebtFunds = (data) => {
                 break;
             case "Medium to Long Duration Fund":
                 break;
-            case "Gilt Fund with 10 year constant duration":
+            case "Gilt Fund with 10 year constant duration-":
                 let gilt10YWorksheet = workbook.addWorksheet('Gilt 10Y Fund');
                 let gilt10YPromise = gilt10YFund(data[type], gilt10YWorksheet);
                 promiseArray.push(gilt10YPromise);
