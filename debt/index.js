@@ -1,4 +1,7 @@
 const liquidFund = require('./liquid-fund');
+const bankPSUFund = require("./banking-and-psu");
+const corporateFund = require("./corporate-bond");
+const creditRiskFund = require("./credit-risk");
 
 const excel = require('excel4node');
 
@@ -8,7 +11,7 @@ const analyzeDebtFunds = (data) => {
     let promiseArray = [];
     Object.keys(data).forEach(type => {
         switch (type) {
-            case "Liquid Fund":
+            case "Liquid Fund-":
                 let liquidWorksheet = workbook.addWorksheet('Liquid Fund');
                 let liquidPromise = liquidFund(data[type], liquidWorksheet);
                 promiseArray.push(liquidPromise);
@@ -16,6 +19,9 @@ const analyzeDebtFunds = (data) => {
             case "Dynamic Bond":
                 break;
             case "Corporate Bond Fund":
+                let corporateWorksheet = workbook.addWorksheet('Corporate Fund');
+                let corporatePromise = corporateFund(data[type], corporateWorksheet);
+                promiseArray.push(corporatePromise);
                 break;
             case "Other Bond":
                 break;
@@ -23,7 +29,10 @@ const analyzeDebtFunds = (data) => {
                 break;
             case "Gilt Fund":
                 break;
-            case "Banking and PSU Fund":
+            case "Banking and PSU Fund-":
+                let bankPSUWorksheet = workbook.addWorksheet('Bank PSU');
+                let bankPSUPromise = bankPSUFund(data[type], bankPSUWorksheet);
+                promiseArray.push(bankPSUPromise);
                 break;
             case "Floater Fund":
                 break;
@@ -38,6 +47,9 @@ const analyzeDebtFunds = (data) => {
             case "Ultra Short Duration Fund":
                 break;
             case "Credit Risk Fund":
+                let creditRiskWorksheet = workbook.addWorksheet('creditRisk Fund');
+                let creditRiskPromise = creditRiskFund(data[type], creditRiskWorksheet);
+                promiseArray.push(creditRiskPromise);
                 break;
             case "Medium to Long Duration Fund":
                 break;

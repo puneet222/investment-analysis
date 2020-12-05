@@ -4,7 +4,7 @@ module.exports = (data) => {
     let dividendReinvestedFundIds = [];
     Object.keys(data).forEach(fund => {
         data[fund].forEach(type => {
-            if(type.c.includes("GR") || type.c.includes("GP")) {
+            if(type.c.includes("GR") || type.c.includes("GP") || type.c.includes("AG")) {
                 // Growth Plans
                 growthFundIds.push(type.c);
             } else if(type.c.includes("DP")) {

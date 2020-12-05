@@ -76,16 +76,6 @@ module.exports = (worksheet, headers, data) => {
                         .string(NA)
                         .style(cellStyles.getCellBackgroundStyle(DISABLE_LIGHT_COLOR));
                     }
-                } else if(key === 'portfolio_turnover') {
-                    if(fundObject[key] !== null) {
-                        worksheet.cell(dataRow, headers[key]['position'])
-                        .number(roundOff(fundObject[key], 2))
-                        .style(cellStyles.getCellBackgroundStyle('f9fbe7'));
-                    } else {
-                        worksheet.cell(dataRow, headers[key]['position'])
-                        .string(NA)
-                        .style(cellStyles.getCellBackgroundStyle(DISABLE_LIGHT_COLOR));
-                    }
                 } else if(key === 'volatility') {
                     if(fundObject[key] !== null) {
                         worksheet.cell(dataRow, headers[key]['position'])
