@@ -1,4 +1,6 @@
 const axios = require("axios");
+const cliProgress = require('cli-progress');
+const chalk = require('chalk');
 const relevantFundData = require("./relevantFundData");
 const relevantFundHoldings = require("./relevantFundHoldings");
 
@@ -6,9 +8,13 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-module.exports = (fundIds) => {
+module.exports = (fundIds, fundName) => {
     let consolidatedData = [];
     let sectors = new Set();
+    console.log(chalk.red.bold(`Analyzing ${fundName}...`));
+    const bar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
+    let totalResolved = 0;
+    bar.start(fundIds.length, totalResolved);
     return new Promise(async resolve => {
         await asyncForEach(fundIds, async (fundId, index) => {
             let fundInfoUrl = `https://api.kuvera.in/mf/api/v4/fund_schemes/${fundId}.json?v=1.171.8`;
@@ -22,11 +28,14 @@ module.exports = (fundIds) => {
             fundData = {...fundData, sectorHoldings: fundHoldings.holdings};
             sectors = new Set([...sectors, ...fundHoldings.sectors]);
             consolidatedData.push(fundData);
+            totalResolved++;
+            bar.update(totalResolved);
         });
         let completeFundData = {
             fundData: consolidatedData,
             fundSectors: sectors
         }
+        bar.stop();
         resolve(completeFundData);
     });
 }

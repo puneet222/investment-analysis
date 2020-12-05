@@ -14,82 +14,67 @@ const excel = require('excel4node');
 
 const workbook = new excel.Workbook();
 
-const analyzeEquityFunds = (data) => {
+async function asyncForEach(array, callback) {
+    for(let index = 0; index < array.length; index++) {
+        await callback(array[index], index, array);
+    }
+}
+
+const analyzeEquityFunds = async data => {
     let promiseArray = [];
-    let types = Object.keys(data).forEach(type => {
+    await asyncForEach(Object.keys(data) , async type => {
         switch (type) {
             case "Multi Cap Fund":
-                // Analyse Multi Cap Funds
                 let multiCapWorksheet = workbook.addWorksheet('Multi Cap Funds');
-                let multiCapPromise = multiCapFund(data[type], multiCapWorksheet);
-                promiseArray.push(multiCapPromise);
+                await multiCapFund(data[type], multiCapWorksheet);
                 break;
             case "Large Cap Fund":
-                // Analyse Large Cap Funds
                 let largeCapWorksheet = workbook.addWorksheet('Large Cap Funds');
-                let largeCapPromise = largeCapFund(data[type], largeCapWorksheet);
-                promiseArray.push(largeCapPromise);
+                await largeCapFund(data[type], largeCapWorksheet);
                 break;
             case "Mid Cap Fund":
-                // Analyse Mid Cap Funds
                 let midCapWorksheet = workbook.addWorksheet('Mid Cap Funds');
-                let midCapPromise = midCapFund(data[type], midCapWorksheet);
-                promiseArray.push(midCapPromise);
+                await midCapFund(data[type], midCapWorksheet);
                 break;
             case "Sectoral/Thematic":
-                // Analyse Sectoral/Thematics
                 let sectoralThematicWorksheet = workbook.addWorksheet('Sectoral Thematic Funds');
-                let sectoralThematicPromise = sectoralThematicFund(data[type], sectoralThematicWorksheet);
-                promiseArray.push(sectoralThematicPromise);
+                await sectoralThematicFund(data[type], sectoralThematicWorksheet);
                 break;
             case "ELSS":
-                // Analyse ELSSs
                 let elssWorksheet = workbook.addWorksheet('ELSS');
-                let elssPromise = elss(data[type], elssWorksheet);
-                promiseArray.push(elssPromise);
+                await elss(data[type], elssWorksheet);
                 break;
             case "Value Fund":
-                // Analyse Value Funds
                 let valueWorksheet = workbook.addWorksheet('Value Funds');
-                let valuePromise = valueFund(data[type], valueWorksheet);
-                promiseArray.push(valuePromise);
+                await valueFund(data[type], valueWorksheet);
                 break;
             case "Large & Mid Cap fund":
-                // Analyse Large & Mid Cap funds
                 let largeMidCapWorksheet = workbook.addWorksheet('Large & Mid Cap Funds');
-                let largeMidCapPromise = largeMidCapFund(data[type], largeMidCapWorksheet);
-                promiseArray.push(largeMidCapPromise);
+                await largeMidCapFund(data[type], largeMidCapWorksheet);
                 break;
             case "Small Cap Fund":
-                // Analyse Small Cap Funds
                 let smallCapWorksheet = workbook.addWorksheet('Small Cap Funds');
-                let smallCapPromise = smallCapFund(data[type], smallCapWorksheet);
-                promiseArray.push(smallCapPromise);
+                await smallCapFund(data[type], smallCapWorksheet);
                 break;
             case "Dividend Yield Fund":
-                // Analyse Dividend Yield Funds
                 let dividendYieldWorksheet = workbook.addWorksheet('Dividend Yield Funds');
-                let dividendYieldPromise = dividendYieldFund(data[type], dividendYieldWorksheet);
-                promiseArray.push(dividendYieldPromise);
+                await dividendYieldFund(data[type], dividendYieldWorksheet);
                 break;
             case "Focused Fund":
-                // Analyse Focused Funds
                 let focusedFundWorksheet = workbook.addWorksheet('Focused Funds');
-                let focusedFundPromise = focusedFund(data[type], focusedFundWorksheet);
-                promiseArray.push(focusedFundPromise);
+                await focusedFund(data[type], focusedFundWorksheet);
                 break;
             case "Contra Fund":
-                // Analyse Contra Funds
                 let contraFundWorksheet = workbook.addWorksheet('Contra Funds');
-                let contraFundPromise = contraFund(data[type], contraFundWorksheet);
-                promiseArray.push(contraFundPromise);
+                await contraFund(data[type], contraFundWorksheet);
                 break;
         
             default:
+                console.log("Equity of type: ", type, " not found");
                 break;
         }
     });
-    Promise.all(promiseArray).then(resp => workbook.write('Excel.xlsx'));
+    workbook.write('Excel.xlsx')
 }
 
 module.exports = analyzeEquityFunds;

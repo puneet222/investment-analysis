@@ -12,7 +12,7 @@ const getAllfundSchemes = async() => {
         // let { data } = await axios.get(fund_schemes_api);
         Object.keys(data).forEach(type => {
             switch (type) {
-                case "Equity-":
+                case "Equity":
                     // Analyze Equity funds
                     equity(data[type]);
                     break;
@@ -21,7 +21,7 @@ const getAllfundSchemes = async() => {
                     break;
                 case "Debt":
                     // Analyze Debt funds
-                    debt(data[type]);
+                    // debt(data[type]);
                     break;
                 case "Hybrid":
                     // Analyze Hybrid funds
