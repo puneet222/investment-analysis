@@ -8,7 +8,7 @@ These days we have an enormous number of Mutual Funds with different categories.
 
 In each of these classifications, we further have subclassifications of funds that sums close to a thousand. If anyone wants to invest any sum of money, it would be very exhausting to choose a fund or explore all the choices.
 
-This application uses Kuvera's public APIs to get all the mutual funds information and analyze it and after that app will generate **Heat Map Spreadsheets**.
+This application uses [Kuvera](https://kuvera.in/)'s public APIs to get all the mutual funds information and analyze it and after that app will generate **Heat Map Spreadsheets**.
 
 > A Data Heat Map highlights each cell with a different colour depending on the figure
 
@@ -45,9 +45,9 @@ Here are some examples of Heat Map Spreadsheet that app will generate
 <br/>
 <br/>
 This project is right now in progress here are a few things that are pending:
-- Adding cell heat map on turnover ratio column
-- Adding cell heat map on AUM column
-- Adding cell heat map on volatility column
+- [ ] Adding cell heat map on turnover ratio column
+- [ ] Adding cell heat map on AUM column
+- [ ] Adding cell heat map on volatility column
 
 
 
