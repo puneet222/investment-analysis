@@ -3,27 +3,29 @@ const debt = require("./debt");
 const hybrid = require("./hybrid");
 const others = require("./others");
 const data = require("./data.json");
+const { asyncForEach } = require("./common/utils");
 
-const getAllfundSchemes = async() => {
+const getAllfundSchemes = async () => {
     try {
         // let { data } = await axios.get(fund_schemes_api);
-        Object.keys(data).forEach(type => {
+        await asyncForEach(Object.keys(data), async type => {
+            console.log(type);
             switch (type) {
                 case "Equity":
                     // Analyze Equity funds
-                    // equity(data[type]);
+                    await equity(data[type]);
                     break;
                 case "Others":
                     // Analyze Others funds
-                    // others(data[type]);
+                    await others(data[type]);
                     break;
                 case "Debt":
                     // Analyze Debt funds
-                    // debt(data[type]);
+                    await debt(data[type]);
                     break;
                 case "Hybrid":
                     // Analyze Hybrid funds
-                    hybrid(data[type]);
+                    await hybrid(data[type]);
                     break;
                 case "Solution Oriented":
                     // Analyze Solution Oriented funds
@@ -38,7 +40,5 @@ const getAllfundSchemes = async() => {
         console.error("Error while getting fund schemes", err);
     }
 }
-
-let types = [ 'Equity', 'Others', 'Debt', 'Hybrid', 'Solution Oriented' ];
 
 getAllfundSchemes();

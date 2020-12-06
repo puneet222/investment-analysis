@@ -11,7 +11,6 @@ module.exports = async data => {
     await asyncForEach(Object.keys(data) , async type => {
         let worksheet = workbook.addWorksheet(type);
         await analyzeDebtFunds(data[type], type, worksheet);
-        return;
     });
-    workbook.write('Debt.xlsx')
+    return new Promise(resolve => resolve(workbook.write('Debt.xlsx')));
 }

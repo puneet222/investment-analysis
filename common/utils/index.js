@@ -6,7 +6,7 @@ const sleep = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-const SLEEP_TIME = 10;
+const SLEEP_TIME = 1000;
 
 const asyncForEach = async (array, callback) => {
     for(let index = 0; index < array.length; index++) {
