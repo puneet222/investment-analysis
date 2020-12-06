@@ -4,7 +4,7 @@ const chalk = require('chalk');
 const relevantFundData = require("../../common/relevantFundData");
 const relevantFundHoldings = require("./relevantFundHoldings");
 const { FUND_NAMES } = require("./funds");
-const { sleep, SLEEP_TIME, asyncForEach } = require("../../common/utils");
+const { sleep, SLEEP_TIME, asyncForEach, getFundInfoUrl, getFundHoldingsUrl } = require("../../common/utils");
 
 const completeFundData = {
     fundData: [],
@@ -23,8 +23,8 @@ module.exports = (fundIds, fundTypeName) => {
         bar.start(fundIds.length, totalResolved);
         return new Promise(async resolve => {
             await asyncForEach(fundIds, async fundId => {
-                let fundInfoUrl = `https://api.kuvera.in/mf/api/v4/fund_schemes/${fundId}.json?v=1.171.8`;
-                let fundHoldingUrl = `https://api.kuvera.in/mf/api/v4/fund_portfolio_holdings/${fundId}.json?v=1.171.8`;
+                let fundInfoUrl = getFundInfoUrl(fundId);
+                let fundHoldingUrl = getFundHoldingsUrl(fundId);
                 let fundInfo = await axios.get(fundInfoUrl);
                 await sleep(SLEEP_TIME);
                 let holdingsInfo = await axios.get(fundHoldingUrl);

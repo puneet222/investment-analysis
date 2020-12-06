@@ -14,9 +14,21 @@ const asyncForEach = async (array, callback) => {
     }
 }
 
+const API_VERSION = '1.171.8';
+
+const getFundInfoUrl = (fundId) => {
+    return `https://api.kuvera.in/mf/api/v4/fund_schemes/${fundId}.json?v=${API_VERSION}`;
+}
+
+const getFundHoldingsUrl = (fundId) => {
+    return `https://api.kuvera.in/mf/api/v4/fund_portfolio_holdings/${fundId}.json?v=${API_VERSION}`;
+}
+
 module.exports = {
     roundOff,
     sleep,
     SLEEP_TIME,
-    asyncForEach
+    asyncForEach,
+    getFundInfoUrl,
+    getFundHoldingsUrl
 }
