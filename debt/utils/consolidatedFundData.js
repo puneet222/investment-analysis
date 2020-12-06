@@ -1,5 +1,6 @@
 const axios = require("axios");
 const cliProgress = require('cli-progress');
+const chalk = require('chalk');
 const relevantFundData = require("../../common/relevantFundData");
 const relevantFundHoldings = require("./relevantFundHoldings");
 
@@ -9,9 +10,10 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-module.exports = (fundIds) => {
+module.exports = (fundIds, fundTypeName) => {
     let consolidatedData = [];
     let ratings = new Set();
+    console.log(chalk.red.bold(`Analyzing ${fundTypeName}...`));
     const bar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
     let totalResolved = 0;
     bar.start(fundIds.length, totalResolved);
