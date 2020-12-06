@@ -13,5 +13,4 @@ module.exports = (data, hybridFundType, worksheet) => {
             console.log(err)
         });
     });
-    console.log(fundIds.growthFundIds);
 }

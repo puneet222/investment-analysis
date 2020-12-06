@@ -1,6 +1,7 @@
 const equity = require("./equity");
 const debt = require("./debt");
 const hybrid = require("./hybrid");
+const others = require("./others");
 const data = require("./data.json");
 
 let fund_schemes_api = "https://api.kuvera.in/mf/api/v4/fund_schemes/list.json?v=1.171.8";
@@ -19,6 +20,7 @@ const getAllfundSchemes = async() => {
                     break;
                 case "Others":
                     // Analyze Others funds
+                    others(data[type]);
                     break;
                 case "Debt":
                     // Analyze Debt funds
@@ -26,7 +28,7 @@ const getAllfundSchemes = async() => {
                     break;
                 case "Hybrid":
                     // Analyze Hybrid funds
-                    hybrid(data[type]);
+                    // hybrid(data[type]);
                     break;
                 case "Solution Oriented":
                     // Analyze Solution Oriented funds
