@@ -40,7 +40,7 @@ Here are some examples of Heat Map Spreadsheet that app will generate
 *Debt | Credit Risk Funds*
 <br/>
 <br/>
-<img src="./assets/equity.png" alt="Debt Funds" width="800" />
+<img src="./assets/equity.png" alt="Equity Funds" width="800" />
 *Equity | Multi Cap Funds*
 <br/>
 <br/>
