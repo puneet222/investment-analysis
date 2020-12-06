@@ -48,6 +48,7 @@ This project is right now in progress here are a few things that are pending:
 - [ ] Adding cell heat map on turnover ratio column
 - [ ] Adding cell heat map on AUM column
 - [ ] Adding cell heat map on volatility column
+- [x] Add Progress bar while analysing the fund
 
 
 
