@@ -6,9 +6,9 @@ These days we have an enormous number of Mutual Funds with different categories.
 - Debt
 - Hybrid
 
-In each of these classifications, we further have subclassifications of funds that sums close to a thousand. If anyone wants to invest any sum of money, it would be very exhausting to choose a fund or explore all the choices.
+In each of these classifications, there are further subclassifications of funds that sums close to a thousand. If anyone wants to invest any sum of money, it would be very exhausting to choose a fund or explore all the choices.
 
-This application uses [Kuvera](https://kuvera.in/)'s public APIs to get all the mutual funds information and analyze it and after that app will generate **Heat Map Spreadsheets**.
+This application uses [Kuvera](https://kuvera.in/)'s public APIs to get all the mutual funds information and analyze it. Once the analysis gets completed, the app will generate **Heat Map Spreadsheets**. Users can view the spreadsheets in order to make an informed decision about the investment.
 
 > A Data Heat Map highlights each cell with a different colour depending on the figure
 
