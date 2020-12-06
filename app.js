@@ -16,7 +16,7 @@ const getAllfundSchemes = async() => {
             switch (type) {
                 case "Equity":
                     // Analyze Equity funds
-                    equity(data[type]);
+                    // equity(data[type]);
                     break;
                 case "Others":
                     // Analyze Others funds
@@ -28,7 +28,7 @@ const getAllfundSchemes = async() => {
                     break;
                 case "Hybrid":
                     // Analyze Hybrid funds
-                    // hybrid(data[type]);
+                    hybrid(data[type]);
                     break;
                 case "Solution Oriented":
                     // Analyze Solution Oriented funds

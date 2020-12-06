@@ -3,12 +3,7 @@ const cliProgress = require('cli-progress');
 const chalk = require('chalk');
 const relevantFundData = require("../../common/relevantFundData");
 const relevantFundHoldings = require("./relevantFundHoldings");
-
-const SLEEP_TIME = 1000;
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+const { sleep, SLEEP_TIME, asyncForEach } = require("../../common/utils");
 
 module.exports = (fundIds, fundName) => {
     let consolidatedData = [];
@@ -40,10 +35,4 @@ module.exports = (fundIds, fundName) => {
         bar.stop();
         resolve(completeFundData);
     });
-}
-
-async function asyncForEach(array, callback) {
-    for(let index = 0; index < array.length; index++) {
-        await callback(array[index], index, array);
-    }
 }

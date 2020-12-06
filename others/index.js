@@ -1,14 +1,8 @@
 const analyzeOtherFunds = require("./analyzeOtherFunds");
-
+const { asyncForEach } = require("../common/utils");
 const excel = require('excel4node');
 
 const workbook = new excel.Workbook();
-
-async function asyncForEach(array, callback) {
-    for(let index = 0; index < array.length; index++) {
-        await callback(array[index], index, array);
-    }
-}
 
 module.exports = async data => {
     let promiseArray = [];

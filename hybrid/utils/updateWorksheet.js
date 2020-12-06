@@ -1,5 +1,5 @@
 const cellStyles = require("../../common/cellStyles");
-const roundOff = require("../../common/roundOff");
+const { roundOff } = require("../../common/utils");
 
 const NA = 'N/A';
 const DISABLE_LIGHT_COLOR = 'b0bec5';

@@ -4,17 +4,12 @@ const chalk = require('chalk');
 const relevantFundData = require("../../common/relevantFundData");
 const relevantFundHoldings = require("./relevantFundHoldings");
 const { FUND_NAMES } = require("./funds");
-
-const SLEEP_TIME = 1;
+const { sleep, SLEEP_TIME, asyncForEach } = require("../../common/utils");
 
 const completeFundData = {
     fundData: [],
     fundSectors: new Set(),
     fundCompanies: new Set() 
-}
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 module.exports = (fundIds, fundTypeName) => {
@@ -56,11 +51,5 @@ module.exports = (fundIds, fundTypeName) => {
     } else {
         console.log(chalk.redBright.bold(`****** ${fundTypeName} not supported yet ******`));
         return new Promise(resolve => resolve(completeFundData));
-    }
-}
-
-async function asyncForEach(array, callback) {
-    for(let index = 0; index < array.length; index++) {
-        await callback(array[index], index, array);
     }
 }
