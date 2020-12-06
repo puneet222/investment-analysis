@@ -43,9 +43,11 @@ Here are some examples of Heat Map Spreadsheet that app will generate
 <br/>
 
 <img src="./assets/equity.png" alt="Equity Funds" width="800" />
+
 *Equity | Multi Cap Funds*
+
 <br/>
-<br/>
+
 This project is right now in progress here are a few things that are pending:
 - [ ] Adding cell heat map on turnover ratio column
 - [ ] Adding cell heat map on AUM column
