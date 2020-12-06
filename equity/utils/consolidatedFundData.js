@@ -4,7 +4,7 @@ const chalk = require('chalk');
 const relevantFundData = require("../../common/relevantFundData");
 const relevantFundHoldings = require("./relevantFundHoldings");
 
-const SLEEP_TIME = 10;
+const SLEEP_TIME = 1000;
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));

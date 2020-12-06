@@ -16,11 +16,11 @@ const getAllfundSchemes = async() => {
             switch (type) {
                 case "Equity":
                     // Analyze Equity funds
-                    // equity(data[type]);
+                    equity(data[type]);
                     break;
                 case "Others":
                     // Analyze Others funds
-                    others(data[type]);
+                    // others(data[type]);
                     break;
                 case "Debt":
                     // Analyze Debt funds

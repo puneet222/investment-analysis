@@ -1,10 +1,9 @@
-//@ts-check
-const utils = require("../utils");
+const utils = require("./utils");
 
-const analyzeDividendYieldFunds = (data, worksheet) => {
+module.exports = (data, equityFundType, worksheet) => {
     let fundIds = utils.segregateFundIds(data);
     return new Promise(resolve => {
-        utils.getConsolidatedDataByFundIds(fundIds.growthFundIds, utils.FUND_NAMES.DIVIDEND_YIELD_FUND).then(data => {
+        utils.getConsolidatedDataByFundIds(fundIds.growthFundIds, equityFundType).then(data => {
             let sectors = Array.from(data.fundSectors);
             let headers = utils.getHeaders(sectors);
             worksheet = utils.updateWorksheet(worksheet, headers, data.fundData);
@@ -14,5 +13,3 @@ const analyzeDividendYieldFunds = (data, worksheet) => {
         });
     });
 }
-
-module.exports = analyzeDividendYieldFunds;

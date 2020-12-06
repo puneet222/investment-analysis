@@ -11,7 +11,6 @@ async function asyncForEach(array, callback) {
 }
 
 module.exports = async data => {
-    let promiseArray = [];
     await asyncForEach(Object.keys(data) , async type => {
         let worksheet = workbook.addWorksheet(type);
         await analyzeHybridFunds(data[type], type, worksheet);
