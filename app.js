@@ -1,13 +1,14 @@
+const axios = require("axios");
 const equity = require("./equity");
 const debt = require("./debt");
 const hybrid = require("./hybrid");
 const others = require("./others");
 const data = require("./data.json");
-const { asyncForEach } = require("./common/utils");
+const { asyncForEach, ALL_FUNDS_URL } = require("./common/utils");
 
 const getAllfundSchemes = async () => {
     try {
-        // let { data } = await axios.get(fund_schemes_api);
+        let { data } = await axios.get(ALL_FUNDS_URL);
         await asyncForEach(Object.keys(data), async type => {
             console.log(type);
             switch (type) {

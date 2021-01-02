@@ -45,6 +45,7 @@ module.exports = (fundIds, fundTypeName) => {
             completeFundData.fundData = consolidatedData,
             completeFundData.fundSectors = sectors;
             completeFundData.fundCompanies = companies;
+            console.log(completeFundData);
             bar.stop();
             resolve(completeFundData);
         });

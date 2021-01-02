@@ -9,12 +9,14 @@ const sleep = (ms) => {
 const SLEEP_TIME = 1000;
 
 const asyncForEach = async (array, callback) => {
-    for(let index = 0; index < array.length; index++) {
-        await callback(array[index], index, array);
+    for(const [index, val] of array.entries()) {
+        await callback(val, index, array);
     }
 }
 
-const API_VERSION = '1.171.8';
+const API_VERSION = '1.173.7';
+
+const ALL_FUNDS_URL = `https://api.kuvera.in/mf/api/v4/fund_schemes/list.json?v=${API_VERSION}`;
 
 const getFundInfoUrl = (fundId) => {
     return `https://api.kuvera.in/mf/api/v4/fund_schemes/${fundId}.json?v=${API_VERSION}`;
@@ -28,6 +30,7 @@ module.exports = {
     roundOff,
     sleep,
     SLEEP_TIME,
+    ALL_FUNDS_URL,
     asyncForEach,
     getFundInfoUrl,
     getFundHoldingsUrl
